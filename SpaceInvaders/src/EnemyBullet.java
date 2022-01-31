@@ -13,7 +13,7 @@ public class EnemyBullet extends Bullet
 	 */
 	public EnemyBullet(Entity enemy, int index)
 	{
-		super(enemy, index);
+		super(enemy, index, "enemy");
 		angle = enemy.getAngle() + 180;
 	}
 
@@ -25,7 +25,7 @@ public class EnemyBullet extends Bullet
 	 */
 	public EnemyBullet(Entity enemy, int index, double a)
 	{
-		super(enemy, index);
+		super(enemy, index, "enemy");
 		angle = enemy.getAngle() + 180 + a;
 	}
 

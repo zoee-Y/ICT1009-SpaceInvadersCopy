@@ -140,7 +140,17 @@ public class Shooter extends Entity
 	{
 		try
 		{
-			Controller.bullets.add(Controller.bullets.size(), new Bullet(shooter, Controller.bullets.size()));
+			//add set bullet type for current bullet, after changing Bullet() params
+			
+			if (shooter == Controller.player) {
+				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), "red");
+				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			}
+			else if (shooter == Controller.player2) {
+				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), "blue");
+				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			}
+						
 		}
 		catch(Exception e)
 		{
@@ -156,7 +166,16 @@ public class Shooter extends Entity
 	{
 		try 
 		{
-			Controller.bullets.add(Controller.bullets.size(), new Bullet(Controller.player, Controller.bullets.size(), angle));
+			//add set bullet type for current bullet, after changing Bullet() params
+			
+			if (shooter == Controller.player) {
+				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), angle, "red");
+				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			}
+			else if (shooter == Controller.player2) {
+				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), angle, "blue");
+				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			}
 		}
 		catch(Exception e)
 		{

@@ -10,15 +10,20 @@ public class Bullet extends Entity
 	 * and should not be seen by other classes
 	 */
 	private final boolean phasable = determinePhasability();
+	
+	//add bulletType
+	private String bulletType;
 
 	/**
 	 * Cunstructor for the Bullet object
 	 * @param entity Bullet will be created with same x, y, and angle as this entity
 	 * @param index Give the Bullet a unique index to identify it
 	 */
-	public Bullet(Entity entity, int index)
+	//added param to Bullet constructor to set bulletType
+	public Bullet(Entity entity, int index, String bulletType)
 	{
 		super(entity.getX(), entity.getY(), entity.getAngle(), index);
+		this.bulletType = bulletType;
 	}
 
 	/**
@@ -27,9 +32,10 @@ public class Bullet extends Entity
 	 * @param index Give the Bullet a unique index to identify it
 	 * @param angleDeviation this angle will be subtracted from the entity's angle and the bullet will be created with the resulting angle
 	 */
-	public Bullet(Entity entity, int index, double angleDeviation)
+	public Bullet(Entity entity, int index, double angleDeviation, String bulletType)
 	{
 		super(entity.getX(), entity.getY(), entity.getAngle() - angleDeviation, index);
+		this.bulletType = bulletType;
 	}
 
 	/**
@@ -150,5 +156,14 @@ public class Bullet extends Entity
 	public boolean isPhasable()
 	{
 		return phasable;
+	}
+	
+	//add getter and setter for bulletType
+	public String getBulletType() {
+		return this.bulletType;
+	}
+	
+	public void setBulletType(String bulletType) {
+		this.bulletType = bulletType;
 	}
 }

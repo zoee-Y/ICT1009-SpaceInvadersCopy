@@ -56,8 +56,5 @@ public class States
   public static double enemyBulletSpeed = enemySpeed*1.5;
   public static double enemySize = SHOOTER_SIZE * 0.9;
   public static double bunkerWidth = States.WINDOW_CENTRE/(double)3;
-  
-  //added previous enemy type and total number of enemies
-  public static String prevEnemyType = "";
-  public static double totalEnemies = 0;
+ 
 }

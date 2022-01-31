@@ -13,6 +13,8 @@ public class Enemy extends Entity
 	 */
 	private static double verticalDisplacement = 0, horizontalDisplacement = 0;
 	private static boolean movingDown = false, movingRight = true;
+	//add variable enemyType
+	private String enemyType = "";
 
 	/**
 	 * Constructor for my Enemy
@@ -64,7 +66,7 @@ public class Enemy extends Entity
 	 */
 	private void checkCollision()
 	{	
-		//add for player 2 -- probably need to have a enemies2 for the player 2 compatible enemies
+		//add for player 2
 		if(inRadius(Controller.player, Controller.enemies.get(index)) || inRadius(Controller.player2, Controller.enemies.get(index)))
 		{
 			Controller.gameOver();
@@ -92,13 +94,18 @@ public class Enemy extends Entity
 	 */
 	private void collideBulletAndEnemy(int bulletIndex)
 	{
-		if(this.damage(Controller.bullets.get(bulletIndex)))
-		{
-			if(Level.powerUpChance())
-				Controller.powerUpBoxes.add(new PowerUpBox(this));
-			dead = true;
+		//add checking if bullets hit the right enemy : player 1 - red, player 2 - blue OR enemy is boss
+		if (Controller.bullets.get(bulletIndex).getBulletType().equals(Controller.enemies.get(index).getEnemyType()) || 
+				Controller.enemies.get(index).getEnemyType().equals("boss")) {
+			//moved this if block inside
+			if(this.damage(Controller.bullets.get(bulletIndex)))
+			{
+				if(Level.powerUpChance())
+					Controller.powerUpBoxes.add(new PowerUpBox(this));
+				dead = true;
+			}
 		}
-
+		
 		try
 		{
 			Controller.bullets.remove(bulletIndex);
@@ -159,8 +166,7 @@ public class Enemy extends Entity
 	public void render(String type)
 	{
 		//String type = "";
-			
-
+		
 		if(States.enemyHealth > 23)
 			type += "Enemy4.png";
 		else if(States.enemyHealth > 18)
@@ -271,5 +277,14 @@ public class Enemy extends Entity
 	public static void invertHorizontalMotion()
 	{
 		movingRight = !movingRight;
+	}
+	
+	//add getter and setter for enemyType
+	public String getEnemyType() {
+		return this.enemyType;
+	}
+	
+	public void setEnemyType(String enemyType) {
+		this.enemyType = enemyType;
 	}
 }

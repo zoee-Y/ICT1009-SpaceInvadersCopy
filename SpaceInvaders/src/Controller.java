@@ -292,22 +292,27 @@ public class Controller
 						if (enemies.get(i).getIndex() % 2 == 0) {
 							if (enemies.get(i).getClass() == Enemy.class) {
 								enemies.get(i).render("Enemy/blue/");
+								enemies.get(i).setEnemyType("blue");
 							}
 							else if (enemies.get(i).getClass() == LockOnEnemy.class) {
 								enemies.get(i).render("LockOnEnemy/blue/");
+								enemies.get(i).setEnemyType("blue");
 							}
 						}
 						else {
 							if (enemies.get(i).getClass() == Enemy.class) {
 								enemies.get(i).render("Enemy/red/");
+								enemies.get(i).setEnemyType("red");
 							}
 							else if (enemies.get(i).getClass() == LockOnEnemy.class) {
 								enemies.get(i).render("LockOnEnemy/red/");
+								enemies.get(i).setEnemyType("red");
 							}
 						}
 					}
 					else {
 						enemies.get(i).render();
+						enemies.get(i).setEnemyType("boss");
 					}
 					
 				}
@@ -476,8 +481,6 @@ public class Controller
 		States.enemyBulletSpeed = States.enemySpeed*1.5;
 		States.enemySize = States.SHOOTER_SIZE * 0.9;
 		States.bunkerWidth = States.WINDOW_CENTRE/(double)3;
-		
-		States.prevEnemyType = "";
 	}
 
 	/**

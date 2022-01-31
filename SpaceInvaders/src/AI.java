@@ -32,9 +32,6 @@ public class AI
 				}
 			}
 		}
-		
-		//set States.totalEnemies
-		States.totalEnemies = Controller.enemies.size();
 	}
 
 	/**
