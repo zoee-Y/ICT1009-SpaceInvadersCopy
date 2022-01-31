@@ -290,10 +290,20 @@ public class Controller
 				for(int i = 0; i < enemies.size(); i++) {
 					if (Level.getLevel() % 5 != 0) {
 						if (enemies.get(i).getIndex() % 2 == 0) {
-							enemies.get(i).render("Enemy/blue/");
+							if (enemies.get(i).getClass() == Enemy.class) {
+								enemies.get(i).render("Enemy/blue/");
+							}
+							else if (enemies.get(i).getClass() == LockOnEnemy.class) {
+								enemies.get(i).render("LockOnEnemy/blue/");
+							}
 						}
 						else {
-							enemies.get(i).render("Enemy/red/");
+							if (enemies.get(i).getClass() == Enemy.class) {
+								enemies.get(i).render("Enemy/red/");
+							}
+							else if (enemies.get(i).getClass() == LockOnEnemy.class) {
+								enemies.get(i).render("LockOnEnemy/red/");
+							}
 						}
 					}
 					else {

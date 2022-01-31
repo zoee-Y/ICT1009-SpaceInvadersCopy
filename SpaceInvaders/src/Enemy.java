@@ -148,7 +148,6 @@ public class Enemy extends Entity
 		else
 			type = "Enemy1.png";
 
-		System.out.println("Enemy drawn");
 		StdDraw.picture(xPos, yPos, type, States.enemySize, States.enemySize, angle);
 	
 		if(HP < States.enemyHealth)
@@ -171,7 +170,6 @@ public class Enemy extends Entity
 		else
 			type += "Enemy1.png";
 
-		System.out.println("Enemy drawn");
 		StdDraw.picture(xPos, yPos, type, States.enemySize, States.enemySize, angle);
 	
 		if(HP < States.enemyHealth)
