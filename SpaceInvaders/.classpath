@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/user/eclipse-workspace/Spaceinvader3(2)/bin/stdlib.jar"/>
+	<classpathentry kind="lib" path="C:/Users/user/SIT/ICT1009 proj/ICT1009-SpaceInvadersCopy/SpaceInvaders/bin/stdlib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
