@@ -288,11 +288,16 @@ public class Controller
 
 				//changed to do checking here and set type -- the index seems to change, which makes the enemy change color when one is destroyed
 				for(int i = 0; i < enemies.size(); i++) {
-					if (enemies.get(i).getIndex() % 2 == 0) {
-						enemies.get(i).render("Enemy/blue/");
+					if (Level.getLevel() % 5 != 0) {
+						if (enemies.get(i).getIndex() % 2 == 0) {
+							enemies.get(i).render("Enemy/blue/");
+						}
+						else {
+							enemies.get(i).render("Enemy/red/");
+						}
 					}
 					else {
-						enemies.get(i).render("Enemy/red/");
+						enemies.get(i).render();
 					}
 					
 				}

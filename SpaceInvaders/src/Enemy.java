@@ -134,6 +134,28 @@ public class Enemy extends Entity
 	/**
 	 * Draws the Enemy
 	 */
+	public void render()
+	{
+		String type = "";
+			
+
+		if(States.enemyHealth > 23)
+			type = "Enemy4.png";
+		else if(States.enemyHealth > 18)
+			type = "Enemy3.png";
+		else if(States.enemyHealth > 13)
+			type = "Enemy2.png";
+		else
+			type = "Enemy1.png";
+
+		System.out.println("Enemy drawn");
+		StdDraw.picture(xPos, yPos, type, States.enemySize, States.enemySize, angle);
+	
+		if(HP < States.enemyHealth)
+			renderHPbar();
+		
+	}
+	
 	//added parameter here to set the type
 	public void render(String type)
 	{

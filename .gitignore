@@ -1,0 +1,6 @@
+
+*.class
+.classpath
+SpaceInvaders/.classpath
+SpaceInvaders/.project
+SpaceInvaders/bin/.project
