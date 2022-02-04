@@ -11,9 +11,9 @@ public class Index
 	 */
 	public static void updateBulletIndex()
 	{
-		for(int i = Controller.bullets.size() - 1; i >= 0; i--)
-			if(Controller.bullets.get(i).getIndex() != i)
-				Controller.bullets.get(i).updateIndex(i);
+		for(int i = GameObjectManager.bullets.size() - 1; i >= 0; i--)
+			if(GameObjectManager.bullets.get(i).getIndex() != i)
+				GameObjectManager.bullets.get(i).updateIndex(i);
 			else
 				break;
 	}
@@ -23,9 +23,9 @@ public class Index
 	 */
 	public static void updateEnemyIndex()
 	{
-		for(int i = Controller.enemies.size() - 1; i >= 0; i--)
-			if(Controller.enemies.get(i).getIndex() != i)
-				Controller.enemies.get(i).updateIndex(i);
+		for(int i = GameObjectManager.enemies.size() - 1; i >= 0; i--)
+			if(GameObjectManager.enemies.get(i).getIndex() != i)
+				GameObjectManager.enemies.get(i).updateIndex(i);
 			else
 				break;
 	}
@@ -35,9 +35,9 @@ public class Index
 	 */
 	public static void updateEnemyBulletIndex()
 	{
-		for(int i = Controller.enemyBullets.size() - 1; i >= 0; i--)
-			if(Controller.enemyBullets.get(i).getIndex() != i)
-				Controller.enemyBullets.get(i).updateIndex(i);
+		for(int i = GameObjectManager.enemyBullets.size() - 1; i >= 0; i--)
+			if(GameObjectManager.enemyBullets.get(i).getIndex() != i)
+				GameObjectManager.enemyBullets.get(i).updateIndex(i);
 			else
 				break;
 	}
@@ -47,9 +47,9 @@ public class Index
 	 */
 	public static void updatePowerUpBoxesIndex()
 	{
-		for(int i = Controller.powerUpBoxes.size() - 1; i >= 0; i--)
-			if(Controller.powerUpBoxes.get(i).getIndex() != i)
-				Controller.powerUpBoxes.get(i).updateIndex(i);
+		for(int i = GameObjectManager.powerUpBoxes.size() - 1; i >= 0; i--)
+			if(GameObjectManager.powerUpBoxes.get(i).getIndex() != i)
+				GameObjectManager.powerUpBoxes.get(i).updateIndex(i);
 			else
 				break;
 	}
@@ -59,9 +59,9 @@ public class Index
 	 */
 	public static void updateBunkerIndex()
 	{
-		for(int i = Controller.bunkers.size() - 1; i >= 0; i--)
-			if(Controller.bunkers.get(i).getIndex() != i)
-				Controller.bunkers.get(i).updateIndex(i);
+		for(int i = GameObjectManager.bunkers.size() - 1; i >= 0; i--)
+			if(GameObjectManager.bunkers.get(i).getIndex() != i)
+				GameObjectManager.bunkers.get(i).updateIndex(i);
 			else
 				break;
 	}

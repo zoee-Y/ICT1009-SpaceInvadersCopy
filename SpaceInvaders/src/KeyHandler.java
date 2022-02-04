@@ -14,10 +14,10 @@ public class KeyHandler
 		//movement
 		if(StdDraw.isKeyPressed(KeyEvent.VK_A))//a
 		{
-			Controller.player.moveLeft(States.SHOOTER_MOVE_SPEED);
+			GameObjectManager.player.moveLeft(States.SHOOTER_MOVE_SPEED);
 			
 			if(!States.controlsKeyboard)
-				Controller.player.setAngle();
+				GameObjectManager.player.setAngle();
 			
 			if(States.debug)
 				System.out.println("KeyHandle: a");
@@ -25,10 +25,10 @@ public class KeyHandler
 
 		if(StdDraw.isKeyPressed(KeyEvent.VK_D))//d
 		{
-			Controller.player.moveRight(States.SHOOTER_MOVE_SPEED);
+			GameObjectManager.player.moveRight(States.SHOOTER_MOVE_SPEED);
 
 			if(!States.controlsKeyboard)
-				Controller.player.setAngle();
+				GameObjectManager.player.setAngle();
 			
 			if(States.debug)
 				System.out.println("KeyHandle: d");
@@ -39,7 +39,7 @@ public class KeyHandler
 		{
 			if(StdDraw.isKeyPressed(KeyEvent.VK_Q))//q
 			{
-				Controller.player.rotateAntiClockWise(States.SHOOTER_ROTATE_SPEED);
+				GameObjectManager.player.rotateAntiClockWise(States.SHOOTER_ROTATE_SPEED);
 
 				if(States.debug)
 					System.out.println("KeyHandle: q");
@@ -47,7 +47,7 @@ public class KeyHandler
 
 			if(StdDraw.isKeyPressed(KeyEvent.VK_E))//e
 			{
-				Controller.player.rotateClockWise(States.SHOOTER_ROTATE_SPEED);
+				GameObjectManager.player.rotateClockWise(States.SHOOTER_ROTATE_SPEED);
 
 				if(States.debug)
 					System.out.println("KeyHandle: e");
@@ -55,7 +55,7 @@ public class KeyHandler
 
 			if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE))//space
 			{
-				Controller.player.shoot(Controller.player);
+				GameObjectManager.player.shoot(GameObjectManager.player);
 
 				if(States.debug)
 					System.out.println("KeyHandle: space");
@@ -66,10 +66,10 @@ public class KeyHandler
 		//movement
 		if(StdDraw.isKeyPressed(KeyEvent.VK_J))//j
 		{
-			Controller.player2.moveLeft(States.SHOOTER_MOVE_SPEED);
+			GameObjectManager.player2.moveLeft(States.SHOOTER_MOVE_SPEED);
 			
 			if(!States.controlsKeyboard)
-				Controller.player2.setAngle();
+				GameObjectManager.player2.setAngle();
 			
 			if(States.debug)
 				System.out.println("KeyHandle: j");
@@ -77,10 +77,10 @@ public class KeyHandler
 
 		if(StdDraw.isKeyPressed(KeyEvent.VK_L))//l
 		{
-			Controller.player2.moveRight(States.SHOOTER_MOVE_SPEED);
+			GameObjectManager.player2.moveRight(States.SHOOTER_MOVE_SPEED);
 
 			if(!States.controlsKeyboard)
-				Controller.player2.setAngle();
+				GameObjectManager.player2.setAngle();
 			
 			if(States.debug)
 				System.out.println("KeyHandle: l");
@@ -91,7 +91,7 @@ public class KeyHandler
 		{
 			if(StdDraw.isKeyPressed(KeyEvent.VK_U))//u
 			{
-				Controller.player2.rotateAntiClockWise(States.SHOOTER_ROTATE_SPEED);
+				GameObjectManager.player2.rotateAntiClockWise(States.SHOOTER_ROTATE_SPEED);
 
 				if(States.debug)
 					System.out.println("KeyHandle: u");
@@ -99,7 +99,7 @@ public class KeyHandler
 
 			if(StdDraw.isKeyPressed(KeyEvent.VK_O))//o
 			{
-				Controller.player2.rotateClockWise(States.SHOOTER_ROTATE_SPEED);
+				GameObjectManager.player2.rotateClockWise(States.SHOOTER_ROTATE_SPEED);
 
 				if(States.debug)
 					System.out.println("KeyHandle: o");
@@ -107,7 +107,7 @@ public class KeyHandler
 
 			if(StdDraw.isKeyPressed(KeyEvent.VK_ENTER))//enter
 			{
-				Controller.player2.shoot(Controller.player2);
+				GameObjectManager.player2.shoot(GameObjectManager.player2);
 
 				if(States.debug)
 					System.out.println("KeyHandle: enter");
@@ -117,7 +117,7 @@ public class KeyHandler
 
 		if(StdDraw.isKeyPressed(KeyEvent.VK_ESCAPE))
 		{
-			Controller.exitConfirmation();
+			GameObjectManager.exitConfirmation();
 		}
 	}
 }

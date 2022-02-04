@@ -52,7 +52,7 @@ public class Enemy extends Entity
 		{
 			try
 			{
-				Controller.enemies.remove(index);
+				GameObjectManager.enemies.remove(index);
 			}
 			catch(IndexOutOfBoundsException e)
 			{
@@ -67,19 +67,19 @@ public class Enemy extends Entity
 	private void checkCollision()
 	{	
 		//add for player 2
-		if(inRadius(Controller.player, Controller.enemies.get(index)) || inRadius(Controller.player2, Controller.enemies.get(index)))
+		if(inRadius(GameObjectManager.player, GameObjectManager.enemies.get(index)) || inRadius(GameObjectManager.player2, GameObjectManager.enemies.get(index)))
 		{
-			Controller.gameOver();
+			GameObjectManager.gameOver();
 		}
 
-		if(Controller.enemies.get(index).getY() < States.enemySize/(double)1.95)
+		if(GameObjectManager.enemies.get(index).getY() < States.enemySize/(double)1.95)
 		{
-			Controller.gameOver();
+			GameObjectManager.gameOver();
 		}
 
-		for (int j = 0; j < Controller.bullets.size(); j++) 
+		for (int j = 0; j < GameObjectManager.bullets.size(); j++) 
 		{
-			if(inRadius(Controller.bullets.get(j), Controller.enemies.get(index)))
+			if(inRadius(GameObjectManager.bullets.get(j), GameObjectManager.enemies.get(index)))
 			{
 				collideBulletAndEnemy(j);
 			}
@@ -95,20 +95,20 @@ public class Enemy extends Entity
 	private void collideBulletAndEnemy(int bulletIndex)
 	{
 		//add checking if bullets hit the right enemy : player 1 - red, player 2 - blue OR enemy is boss
-		if (Controller.bullets.get(bulletIndex).getBulletType().equals(Controller.enemies.get(index).getEnemyType()) || 
-				Controller.enemies.get(index).getEnemyType().equals("boss")) {
+		if (GameObjectManager.bullets.get(bulletIndex).getBulletType().equals(GameObjectManager.enemies.get(index).getEnemyType()) || 
+				GameObjectManager.enemies.get(index).getEnemyType().equals("boss")) {
 			//moved this if block inside
-			if(this.damage(Controller.bullets.get(bulletIndex)))
+			if(this.damage(GameObjectManager.bullets.get(bulletIndex)))
 			{
 				if(Level.powerUpChance())
-					Controller.powerUpBoxes.add(new PowerUpBox(this));
+					GameObjectManager.powerUpBoxes.add(new PowerUpBox(this));
 				dead = true;
 			}
 		}
 		
 		try
 		{
-			Controller.bullets.remove(bulletIndex);
+			GameObjectManager.bullets.remove(bulletIndex);
 		}
 		catch(IndexOutOfBoundsException e)
 		{

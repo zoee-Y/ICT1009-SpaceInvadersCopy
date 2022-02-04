@@ -11,7 +11,7 @@ public class PowerUpBox extends Entity
 	 */
 	public PowerUpBox(Enemy enemy)
 	{
-		super(enemy.getX(), enemy.getY(), 0, Controller.powerUpBoxes.size());
+		super(enemy.getX(), enemy.getY(), 0, GameObjectManager.powerUpBoxes.size());
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class PowerUpBox extends Entity
 		{
 			try
 			{
-				Controller.powerUpBoxes.remove(index);
+				GameObjectManager.powerUpBoxes.remove(index);
 			}
 			catch(Exception e)
 			{
@@ -57,9 +57,9 @@ public class PowerUpBox extends Entity
 	private void checkCollision()
 	{
 
-		for(int j = 0; j < Controller.bullets.size(); j++)
+		for(int j = 0; j < GameObjectManager.bullets.size(); j++)
 		{
-			if(inRadius(Controller.bullets.get(j), Controller.powerUpBoxes.get(index)))
+			if(inRadius(GameObjectManager.bullets.get(j), GameObjectManager.powerUpBoxes.get(index)))
 			{
 				collideBulletAndPowerUpBox(j, index);
 				break;
@@ -67,7 +67,7 @@ public class PowerUpBox extends Entity
 		}
 		
 		//add or condition for player 2 collect powerups
-		if(inRadius(Controller.player, Controller.powerUpBoxes.get(index)) || inRadius(Controller.player2, Controller.powerUpBoxes.get(index)))
+		if(inRadius(GameObjectManager.player, GameObjectManager.powerUpBoxes.get(index)) || inRadius(GameObjectManager.player2, GameObjectManager.powerUpBoxes.get(index)))
 		{
 			collidePlayerAndPowerUpBox(index);
 		}
@@ -81,15 +81,15 @@ public class PowerUpBox extends Entity
 	 */
 	private void collideBulletAndPowerUpBox(int bulletIndex, int powerUpBoxIndex)
 	{
-		if(Controller.powerUp == null)
-			Controller.powerUp = new PowerUp();
+		if(GameObjectManager.powerUp == null)
+			GameObjectManager.powerUp = new PowerUp();
 		else
-			Controller.powerUp.activate();
+			GameObjectManager.powerUp.activate();
 
 		dead = true;
 		try
 		{
-			Controller.bullets.remove(bulletIndex);
+			GameObjectManager.bullets.remove(bulletIndex);
 		}
 		catch(Exception e)
 		{
@@ -104,10 +104,10 @@ public class PowerUpBox extends Entity
 	 */
 	private void collidePlayerAndPowerUpBox(int powerUpBoxIndex)
 	{
-		if(Controller.powerUp == null)
-			Controller.powerUp = new PowerUp();
+		if(GameObjectManager.powerUp == null)
+			GameObjectManager.powerUp = new PowerUp();
 		else
-			Controller.powerUp.activate();
+			GameObjectManager.powerUp.activate();
 
 		dead = true;
 	}

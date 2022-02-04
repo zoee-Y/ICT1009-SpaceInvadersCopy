@@ -36,8 +36,8 @@ public class Bunker extends Entity
 	 */
 	public static void initializeBunkers()
 	{
-		Controller.bunkers.add(new Bunker(States.WINDOW_CENTRE/(double)2, States.SHOOTER_START_Y * 3 + States.BUNKER_HEIGHT, 0, Controller.bunkers.size(), States.bunkerHP, States.bunkerWidth, true));
-		Controller.bunkers.add(new Bunker(States.WINDOW_CENTRE/(double)2 + States.WINDOW_CENTRE, States.SHOOTER_START_Y * 3 + States.BUNKER_HEIGHT, 0, Controller.bunkers.size(), States.bunkerHP, States.bunkerWidth, false));
+		GameObjectManager.bunkers.add(new Bunker(States.WINDOW_CENTRE/(double)2, States.SHOOTER_START_Y * 3 + States.BUNKER_HEIGHT, 0, GameObjectManager.bunkers.size(), States.bunkerHP, States.bunkerWidth, true));
+		GameObjectManager.bunkers.add(new Bunker(States.WINDOW_CENTRE/(double)2 + States.WINDOW_CENTRE, States.SHOOTER_START_Y * 3 + States.BUNKER_HEIGHT, 0, GameObjectManager.bunkers.size(), States.bunkerHP, States.bunkerWidth, false));
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class Bunker extends Entity
 		checkCollision();
 
 		if(dead)
-			Controller.bunkers.remove(index);
+			GameObjectManager.bunkers.remove(index);
 	}
 
 	/**
@@ -142,37 +142,37 @@ public class Bunker extends Entity
 	 */
 	private void checkCollision()
 	{
-		for(int j = 0; j < Controller.bunkers.size(); j++)
+		for(int j = 0; j < GameObjectManager.bunkers.size(); j++)
 		{
 			if(index != j)
 			{
-				if(inRadius(Controller.bunkers.get(index), Controller.bunkers.get(j)))
+				if(inRadius(GameObjectManager.bunkers.get(index), GameObjectManager.bunkers.get(j)))
 				{
 					collideBunkers(index, j);
 				}
 			}
 		}
 
-		for(int j = 0; j < Controller.bullets.size(); j++)
+		for(int j = 0; j < GameObjectManager.bullets.size(); j++)
 		{
-			if(Controller.bunkers.size() < 1)
+			if(GameObjectManager.bunkers.size() < 1)
 				break;
 
-			if(inRadius(Controller.bullets.get(j), Controller.bunkers.get(index)))
+			if(inRadius(GameObjectManager.bullets.get(j), GameObjectManager.bunkers.get(index)))
 			{
-				collideBunkerAndBullet(Controller.bullets.get(j));
+				collideBunkerAndBullet(GameObjectManager.bullets.get(j));
 				Index.updateBulletIndex();
 			}
 		}
 
-		for(int j = Controller.enemyBullets.size() - 1; j >= 0 ; j--)
+		for(int j = GameObjectManager.enemyBullets.size() - 1; j >= 0 ; j--)
 		{
-			if(Controller.bunkers.size() < 1)
+			if(GameObjectManager.bunkers.size() < 1)
 				break;
 
-			if(inRadius(Controller.enemyBullets.get(j), Controller.bunkers.get(index)))
+			if(inRadius(GameObjectManager.enemyBullets.get(j), GameObjectManager.bunkers.get(index)))
 			{
-				collideBunkerAndBullet(Controller.enemyBullets.get(j));
+				collideBunkerAndBullet(GameObjectManager.enemyBullets.get(j));
 				Index.updateEnemyBulletIndex();
 			}
 		}
@@ -185,11 +185,11 @@ public class Bunker extends Entity
 	 */
 	private void collideBunkers(int bunkIndex1, int bunkIndex2)
 	{
-		Controller.bunkers.get(bunkIndex1).invertMovement();
-		Controller.bunkers.get(bunkIndex1).updatePos();
+		GameObjectManager.bunkers.get(bunkIndex1).invertMovement();
+		GameObjectManager.bunkers.get(bunkIndex1).updatePos();
 
-		Controller.bunkers.get(bunkIndex2).invertMovement();
-		Controller.bunkers.get(bunkIndex2).updatePos();
+		GameObjectManager.bunkers.get(bunkIndex2).invertMovement();
+		GameObjectManager.bunkers.get(bunkIndex2).updatePos();
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class Bunker extends Entity
 	{
 		if(bull instanceof EnemyBullet)
 		{
-			Controller.enemyBullets.remove(bull.getIndex());
+			GameObjectManager.enemyBullets.remove(bull.getIndex());
 
 			if(this.damage(bull))
 				dead = true;
@@ -211,7 +211,7 @@ public class Bunker extends Entity
 			{
 				try 
 				{
-					Controller.bullets.remove(bull.getIndex());	
+					GameObjectManager.bullets.remove(bull.getIndex());	
 				}
 				catch(IndexOutOfBoundsException e) 
 				{

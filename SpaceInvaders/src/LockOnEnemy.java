@@ -19,10 +19,10 @@ public class LockOnEnemy extends Enemy
 	
 	public void updateAngle()
 	{
-		if(Controller.player.getX() <= xPos)
-			angle = Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) - 90;
+		if(GameObjectManager.player.getX() <= xPos)
+			angle = Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) - 90;
 		else
-			angle = Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) + 90;
+			angle = Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) + 90;
 
 		if(angle > 90)
 			angle = 90;

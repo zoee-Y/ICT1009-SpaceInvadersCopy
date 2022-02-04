@@ -89,7 +89,7 @@ public class PowerUp
 		else
 			GameTimer.powerUpTimer.start();
 		
-		Controller.soundManager.playPowerUp();
+		GameObjectManager.soundManager.playPowerUp();
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class PowerUp
 
 	public void heal()
 	{
-		Controller.player.setHP(States.playerHP);
+		GameObjectManager.player.setHP(States.playerHP);
 		text = "HEALED!";
 	}
 
@@ -176,10 +176,10 @@ public class PowerUp
 	 */
 	public static void clearPowerUps()
 	{
-		if(Controller.powerUp != null)
+		if(GameObjectManager.powerUp != null)
 		{
-			Controller.powerUp.deActivate();
-			Controller.powerUp = null;
+			GameObjectManager.powerUp.deActivate();
+			GameObjectManager.powerUp = null;
 		}
 		GameTimer.powerUpTimer.stop();
 	}
@@ -190,7 +190,7 @@ public class PowerUp
 	public void render()
 	{
 		if(shieldActive)
-			StdDraw.picture(Controller.player.getX(), Controller.player.getY(), "shield.png", States.SHOOTER_SIZE, States.SHOOTER_SIZE);
+			StdDraw.picture(GameObjectManager.player.getX(), GameObjectManager.player.getY(), "shield.png", States.SHOOTER_SIZE, States.SHOOTER_SIZE);
 		
 		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
 		StdDraw.text(States.WINDOW_RESOLUTION - text.length()*StdDraw.getFont().getSize()*0.4, States.SHOOTER_SIZE/(double)4, text);

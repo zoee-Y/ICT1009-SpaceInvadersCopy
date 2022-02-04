@@ -119,7 +119,7 @@ public class Button
 	 */
 	public void clicked()
 	{
-		Controller.soundManager.playClick();
+		GameObjectManager.soundManager.playClick();
 		if(text.equals("Options"))
 		{
 			States.isOptionRunning = true;
@@ -142,11 +142,11 @@ public class Button
 		}
 		else if(text.equals("Back"))
 		{
-			if(Controller.screen instanceof OptionScreen)
+			if(GameObjectManager.screen instanceof OptionScreen)
 				States.isOptionRunning = false;
-			else if(Controller.screen instanceof InstructionsScreen)
+			else if(GameObjectManager.screen instanceof InstructionsScreen)
 				States.isInstructionsRunning = false;
-			else if(Controller.screen instanceof HighScoreScreen)
+			else if(GameObjectManager.screen instanceof HighScoreScreen)
 				States.isHighScoreRunning = false;
 			
 			States.isWelcomeRunning = true;

@@ -180,7 +180,7 @@ public class GameTimer implements ActionListener
 				{
 					try
 					{
-						Controller.powerUpBoxes.add(new PowerUpBox(Controller.enemies.get((int)(Math.random()*Controller.enemies.size()))));
+						GameObjectManager.powerUpBoxes.add(new PowerUpBox(GameObjectManager.enemies.get((int)(Math.random()*GameObjectManager.enemies.size()))));
 					}
 					catch(Exception ex)
 					{
@@ -193,7 +193,7 @@ public class GameTimer implements ActionListener
 				{
 					try 
 					{
-						Controller.powerUpBoxes.add(new PowerUpBox(Controller.enemies.get((int)(Math.random()*Controller.enemies.size()))));
+						GameObjectManager.powerUpBoxes.add(new PowerUpBox(GameObjectManager.enemies.get((int)(Math.random()*GameObjectManager.enemies.size()))));
 					}
 					catch(Exception ex)
 					{

@@ -199,7 +199,7 @@ public class Store
 	 */
 	public static void renderCosts()
 	{
-		for(int i = 0; i < Controller.screen.buttons.length; i++)
-			renderCost(Controller.screen.buttons[i]);
+		for(int i = 0; i < GameObjectManager.screen.buttons.length; i++)
+			renderCost(GameObjectManager.screen.buttons[i]);
 	}
 }

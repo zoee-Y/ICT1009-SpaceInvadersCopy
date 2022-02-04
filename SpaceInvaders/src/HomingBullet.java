@@ -30,14 +30,14 @@ public class HomingBullet extends EnemyBullet
 	 */
 	public void updateAngle()
 	{
-		if(Controller.player.getX() <= xPos)
+		if(GameObjectManager.player.getX() <= xPos)
 		{
-			if(angle != (Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) - 90))
-				angle += (Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) - 90)/(double)50;
+			if(angle != (Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) - 90))
+				angle += (Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) - 90)/(double)50;
 		}
 		else
-			if(angle != (Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) + 90))
-				angle += (Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) + 90)/(double)50;
+			if(angle != (Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) + 90))
+				angle += (Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) + 90)/(double)50;
 	}
 
 	/**

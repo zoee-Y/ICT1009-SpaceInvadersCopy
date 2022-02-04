@@ -84,7 +84,7 @@ public class Bullet extends Entity
 		{
 			try
 			{
-				Controller.bullets.remove(index);
+				GameObjectManager.bullets.remove(index);
 			}
 			catch(IndexOutOfBoundsException e)
 			{

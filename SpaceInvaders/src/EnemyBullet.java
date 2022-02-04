@@ -65,7 +65,7 @@ public class EnemyBullet extends Bullet
 		{
 			try
 			{
-				Controller.enemyBullets.remove(index);
+				GameObjectManager.enemyBullets.remove(index);
 			}
 			catch(IndexOutOfBoundsException e)
 			{

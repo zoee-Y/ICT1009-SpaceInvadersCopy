@@ -23,6 +23,6 @@ public class PlayScreen extends Screen
 	
 	public void setBackGround()
 	{
-		StdDraw.picture(States.WINDOW_CENTRE - States.WINDOW_RESOLUTION*0.3 + (Controller.player.getX()/States.WINDOW_RESOLUTION)*0.6*States.WINDOW_RESOLUTION, States.WINDOW_CENTRE, filename, States.WINDOW_RESOLUTION*2, States.WINDOW_RESOLUTION);
+		StdDraw.picture(States.WINDOW_CENTRE - States.WINDOW_RESOLUTION*0.3 + (GameObjectManager.player.getX()/States.WINDOW_RESOLUTION)*0.6*States.WINDOW_RESOLUTION, States.WINDOW_CENTRE, filename, States.WINDOW_RESOLUTION*2, States.WINDOW_RESOLUTION);
 	}
 }

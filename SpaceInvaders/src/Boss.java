@@ -24,7 +24,7 @@ public class Boss extends Enemy
 	 */
 	public Boss(int level)
 	{
-		super(States.WINDOW_CENTRE, States.WINDOW_RESOLUTION - States.BOSS_SIZE/(double)1.3, 45, Controller.enemies.size(), level * 400);
+		super(States.WINDOW_CENTRE, States.WINDOW_RESOLUTION - States.BOSS_SIZE/(double)1.3, 45, GameObjectManager.enemies.size(), level * 400);
 		
 		if(level <= 10)
 			angle = 0;
@@ -59,10 +59,10 @@ public class Boss extends Enemy
 	 */
 	public void lockOntoPlayer()
 	{
-		if(Controller.player.getX() <= xPos)
-			angle = Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) - 90;
+		if(GameObjectManager.player.getX() <= xPos)
+			angle = Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) - 90;
 		else
-			angle = Math.toDegrees(Math.atan((yPos - Controller.player.getY())/(double)(xPos - Controller.player.getX()))) + 90;
+			angle = Math.toDegrees(Math.atan((yPos - GameObjectManager.player.getY())/(double)(xPos - GameObjectManager.player.getX()))) + 90;
 
 		if(angle > 90)
 			angle = 90;
@@ -151,9 +151,9 @@ public class Boss extends Enemy
 		try 
 		{
 			if((int)(Math.random()*30 - 2*Level.getLevel()) <= Level.getLevel())
-				Controller.enemyBullets.add(Controller.enemyBullets.size(), new HomingBullet(Controller.enemies.get(index), Controller.enemyBullets.size()));
+				GameObjectManager.enemyBullets.add(GameObjectManager.enemyBullets.size(), new HomingBullet(GameObjectManager.enemies.get(index), GameObjectManager.enemyBullets.size()));
 			else
-				Controller.enemyBullets.add(Controller.enemyBullets.size(), new EnemyBullet(Controller.enemies.get(index), Controller.enemyBullets.size()));
+				GameObjectManager.enemyBullets.add(GameObjectManager.enemyBullets.size(), new EnemyBullet(GameObjectManager.enemies.get(index), GameObjectManager.enemyBullets.size()));
 		} 
 		catch (IndexOutOfBoundsException e) 
 		{
@@ -170,7 +170,7 @@ public class Boss extends Enemy
 	{
 		try
 		{
-			Controller.enemyBullets.add(new EnemyBullet(Controller.enemies.get(index), Controller.enemyBullets.size(), angle));
+			GameObjectManager.enemyBullets.add(new EnemyBullet(GameObjectManager.enemies.get(index), GameObjectManager.enemyBullets.size(), angle));
 		}
 		catch (IndexOutOfBoundsException e)
 		{

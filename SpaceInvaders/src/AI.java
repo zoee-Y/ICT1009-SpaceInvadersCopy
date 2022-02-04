@@ -18,7 +18,7 @@ public class AI
 	public static void initializeEnemies()
 	{
 		if(Level.getLevel() % 5 == 0)
-			Controller.enemies.add(new Boss(Level.getLevel()));
+			GameObjectManager.enemies.add(new Boss(Level.getLevel()));
 		else
 		{
 			States.enemySize = States.WINDOW_CENTRE/(double)(Level.getEnemyCols() + 1);
@@ -26,9 +26,9 @@ public class AI
 			for(int x = 0; x < Level.getEnemyCols(); x++) {
 				for(int y = 0; y < Level.getEnemyRows(); y++) {
 					if((int)(Math.random()*(Level.getEnemyCols()*Level.getEnemyRows())/2) >= (Level.getEnemyCols()*Level.getEnemyRows())/1.8 - Level.getLevel())
-						Controller.enemies.add(new LockOnEnemy(States.enemySize * 0.6 + x*(States.enemySize + States.enemySize*0.1), States.WINDOW_RESOLUTION - States.enemySize *1.5 - y*(States.enemySize + States.enemySize*0.1), 0, Controller.enemies.size(), States.enemyHealth));
+						GameObjectManager.enemies.add(new LockOnEnemy(States.enemySize * 0.6 + x*(States.enemySize + States.enemySize*0.1), States.WINDOW_RESOLUTION - States.enemySize *1.5 - y*(States.enemySize + States.enemySize*0.1), 0, GameObjectManager.enemies.size(), States.enemyHealth));
 					else
-						Controller.enemies.add(new Enemy(States.enemySize * 0.6 + x*(States.enemySize + States.enemySize*0.1), States.WINDOW_RESOLUTION - States.enemySize *1.5 - y*(States.enemySize + States.enemySize*0.1), 0, Controller.enemies.size(), States.enemyHealth));
+						GameObjectManager.enemies.add(new Enemy(States.enemySize * 0.6 + x*(States.enemySize + States.enemySize*0.1), States.WINDOW_RESOLUTION - States.enemySize *1.5 - y*(States.enemySize + States.enemySize*0.1), 0, GameObjectManager.enemies.size(), States.enemyHealth));
 				}
 			}
 		}
@@ -39,10 +39,10 @@ public class AI
 	 */
 	private static void moveAllEnemiesRight()
 	{
-		for (int i = 0; i < Controller.enemies.size(); i++) 
+		for (int i = 0; i < GameObjectManager.enemies.size(); i++) 
 			if(StdDraw.isKeyPressed(KeyEvent.VK_V))//a
 			{
-			Controller.enemies.get(i).moveRight(States.enemySpeed);
+			GameObjectManager.enemies.get(i).moveRight(States.enemySpeed);
 	}
 	}
 	/**
@@ -50,10 +50,10 @@ public class AI
 	 */
 	private static void moveAllEnemiesLeft()
 	{
-		for (int i = 0; i < Controller.enemies.size(); i++) 
+		for (int i = 0; i < GameObjectManager.enemies.size(); i++) 
 			if(StdDraw.isKeyPressed(KeyEvent.VK_C))//a
 			{
-			Controller.enemies.get(i).moveLeft(States.enemySpeed);
+			GameObjectManager.enemies.get(i).moveLeft(States.enemySpeed);
 	}
 	}
 	/**
@@ -61,8 +61,8 @@ public class AI
 	 */
 	private static void moveAllBasicEnemiesDown()
 	{
-		for (int i = 0; i < Controller.enemies.size(); i++) 
-			Controller.enemies.get(i).moveDown(States.enemySpeed * 0.7);
+		for (int i = 0; i < GameObjectManager.enemies.size(); i++) 
+			GameObjectManager.enemies.get(i).moveDown(States.enemySpeed * 0.7);
 	}
 
 	/**
@@ -111,13 +111,13 @@ public class AI
 	 */
 	public static void basicEnemyShoot()
 	{
-		if(Controller.enemies.size() > 0)
+		if(GameObjectManager.enemies.size() > 0)
 		{
-			int enemyIndex = (int) (Math.random()*Controller.enemies.size());
+			int enemyIndex = (int) (Math.random()*GameObjectManager.enemies.size());
 			if((int)(Math.random() * (40 - Level.getLevel())) <= Level.getLevel())
-				Controller.enemyBullets.add(new HomingBullet(Controller.enemies.get(enemyIndex), Controller.enemyBullets.size()));
+				GameObjectManager.enemyBullets.add(new HomingBullet(GameObjectManager.enemies.get(enemyIndex), GameObjectManager.enemyBullets.size()));
 			else
-				Controller.enemyBullets.add(new EnemyBullet(Controller.enemies.get(enemyIndex), Controller.enemyBullets.size()));
+				GameObjectManager.enemyBullets.add(new EnemyBullet(GameObjectManager.enemies.get(enemyIndex), GameObjectManager.enemyBullets.size()));
 		}
 	}
 	
@@ -127,8 +127,8 @@ public class AI
 	 */
 	public static void bossShoot()
 	{
-		for(int i = 0; i < Controller.enemies.size(); i++)
-			((Boss) Controller.enemies.get(i)).shoot();
+		for(int i = 0; i < GameObjectManager.enemies.size(); i++)
+			((Boss) GameObjectManager.enemies.get(i)).shoot();
 	}
 	
 	/**
@@ -146,9 +146,9 @@ public class AI
 
 		Enemy.IncreaseHorizontalDisplacement(States.enemySpeed);
 		
-		for (int i = 0; i < Controller.enemies.size(); i++) 
+		for (int i = 0; i < GameObjectManager.enemies.size(); i++) 
 		{
-			if(!Controller.enemies.get(i).canMoveLeft() || !Controller.enemies.get(i).canMoveRight())
+			if(!GameObjectManager.enemies.get(i).canMoveLeft() || !GameObjectManager.enemies.get(i).canMoveRight())
 			{
 				Enemy.invertHorizontalMotion();
 				Enemy.resetHorizontalDisplacement();
@@ -187,8 +187,8 @@ public class AI
 	 */
 	private static void rotateBossClock()
 	{
-		for (int i = 0; i < Controller.enemies.size(); i++) 
-			Controller.enemies.get(i).rotateClockWise(States.enemySpeed);
+		for (int i = 0; i < GameObjectManager.enemies.size(); i++) 
+			GameObjectManager.enemies.get(i).rotateClockWise(States.enemySpeed);
 	}
 	
 	/**
@@ -196,8 +196,8 @@ public class AI
 	 */
 	private static void rotateBossAntiClock()
 	{
-		for (int i = 0; i < Controller.enemies.size(); i++) 
-			Controller.enemies.get(i).rotateAntiClockWise(States.enemySpeed);
+		for (int i = 0; i < GameObjectManager.enemies.size(); i++) 
+			GameObjectManager.enemies.get(i).rotateAntiClockWise(States.enemySpeed);
 	}
 	
 	/**
@@ -206,7 +206,7 @@ public class AI
 	 */
 	private static void lockBossOntoPlayer()
 	{
-		for (int i = 0; i < Controller.enemies.size(); i++) 
-			((Boss) Controller.enemies.get(i)).lockOntoPlayer();
+		for (int i = 0; i < GameObjectManager.enemies.size(); i++) 
+			((Boss) GameObjectManager.enemies.get(i)).lockOntoPlayer();
 	}
 }

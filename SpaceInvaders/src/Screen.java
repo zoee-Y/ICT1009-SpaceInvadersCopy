@@ -44,7 +44,7 @@ public class Screen
 			
 			if(this instanceof PlayScreen && !States.controlsKeyboard)
 			{
-				Controller.player.setAngle();
+				GameObjectManager.player.setAngle();
 			}
 		}
 		
@@ -59,7 +59,7 @@ public class Screen
 						buttons[i].isClicked();
 			
 			if(this instanceof PlayScreen && !States.controlsKeyboard)
-				Controller.player.shoot(Controller.player);
+				GameObjectManager.player.shoot(GameObjectManager.player);
 			
 			States.mouseClicked = true;
 		}
