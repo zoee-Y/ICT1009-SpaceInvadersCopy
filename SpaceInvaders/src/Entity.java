@@ -307,11 +307,12 @@ public class Entity
 	 */
 	private boolean checkHP()
 	{
+		System.out.println("this: " + this);
 		if(HP <= 0)
 		{
 			if(this instanceof Enemy)
 			{
-				Score.increaseScore(Controller.player, (Enemy) this);
+				Score.increaseScore(GameObjectManager.player, (Enemy) this);
 				return true;
 			}
 			else if(this instanceof Shooter)
@@ -320,7 +321,8 @@ public class Entity
 				else
 				{
 					((Shooter)this).loseLife();
-					Controller.player = new Shooter();
+					GameObjectManager.player = new Shooter();
+					GameObjectManager.player2 = new Shooter();
 				}
 			else if(this instanceof Bunker)
 				return true;

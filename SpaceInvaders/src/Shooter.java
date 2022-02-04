@@ -21,7 +21,8 @@ public class Shooter extends Entity
 	public Shooter(double x, double y)
 	{
 		super(x, y, 0);
-		HP = States.playerHP;
+		//changed for player 2 HP
+		HP = States.player2HP;
 	}
 
 	/**
@@ -38,12 +39,17 @@ public class Shooter extends Entity
 	 */
 	private void checkCollision()
 	{
-		for(int i = Controller.enemyBullets.size() - 1; i >= 0; i--)
-			if(inRadius(Controller.player, Controller.enemyBullets.get(i)) || inRadius(Controller.player2, Controller.enemyBullets.get(i)))
+		for(int i = GameObjectManager.enemyBullets.size() - 1; i >= 0; i--) {
+			if(inRadius(GameObjectManager.player, GameObjectManager.enemyBullets.get(i)))
 			{
-				collidePlayerAndEnemyBullet(Controller.enemyBullets.get(i));
+				collidePlayerAndEnemyBullet(GameObjectManager.enemyBullets.get(i), GameObjectManager.player);
 				break;
 			}
+			else if (inRadius(GameObjectManager.player2, GameObjectManager.enemyBullets.get(i))) {
+				collidePlayerAndEnemyBullet(GameObjectManager.enemyBullets.get(i), GameObjectManager.player2);
+				break;
+			}
+		}
 	}
 
 	/**
@@ -51,22 +57,20 @@ public class Shooter extends Entity
 	 * destroyes the bullet and if the player is out of health restarts the level
 	 * @param enemyBullet made contact with
 	 */
-	private void collidePlayerAndEnemyBullet(EnemyBullet enemyBullet)
+	//added param for whether it is player 1 or two that got hit
+	private void collidePlayerAndEnemyBullet(EnemyBullet enemyBullet, Shooter shooter)
 	{
 		try
 		{
-			Controller.enemyBullets.remove(enemyBullet.getIndex());
+			GameObjectManager.enemyBullets.remove(enemyBullet.getIndex());
 		}
 		catch(IndexOutOfBoundsException e)
 		{
 			e.printStackTrace();
 		}
 
-		if(Controller.player.damage(enemyBullet))
-			Controller.loseLevel();
-		//added player 2 check HP when got hit
-		if(Controller.player2.damage(enemyBullet))
-			Controller.loseLevel();
+		if(shooter.damage(enemyBullet))
+			GameObjectManager.loseLevel();
 	}
 
 	/**
@@ -76,7 +80,7 @@ public class Shooter extends Entity
 	public void shoot(Shooter shooter)
 	{
 		//if shooter is player 1, use canShoot
-		if (shooter == Controller.player) {
+		if (shooter == GameObjectManager.player) {
 			if(States.canShoot && !States.pause)
 			{
 				if(States.numberBulletsPlayerShoots % 2 != 0)
@@ -99,11 +103,11 @@ public class Shooter extends Entity
 				}
 				States.canShoot = false;
 				GameTimer.shootTimer.start();
-				Controller.soundManager.playShoot();
+				GameObjectManager.soundManager.playShoot();
 			}
 		}
 		//if shooter is player 2, use canShoot2
-		else if (shooter == Controller.player2) {
+		else if (shooter == GameObjectManager.player2) {
 			if(States.canShoot2 && !States.pause)
 			{
 				if(States.numberBulletsPlayerShoots % 2 != 0)
@@ -126,7 +130,7 @@ public class Shooter extends Entity
 				}
 				States.canShoot2 = false;
 				GameTimer.shootTimer2.start();
-				Controller.soundManager.playShoot();
+				GameObjectManager.soundManager.playShoot();
 			}
 		}
 	}
@@ -142,13 +146,13 @@ public class Shooter extends Entity
 		{
 			//add set bullet type for current bullet, after changing Bullet() params
 			
-			if (shooter == Controller.player) {
-				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), "red");
-				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			if (shooter == GameObjectManager.player) {
+				Bullet newBullet = new Bullet(shooter, GameObjectManager.bullets.size(), "red");
+				GameObjectManager.bullets.add(GameObjectManager.bullets.size(), newBullet);
 			}
-			else if (shooter == Controller.player2) {
-				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), "blue");
-				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			else if (shooter == GameObjectManager.player2) {
+				Bullet newBullet = new Bullet(shooter, GameObjectManager.bullets.size(), "blue");
+				GameObjectManager.bullets.add(GameObjectManager.bullets.size(), newBullet);
 			}
 						
 		}
@@ -168,13 +172,13 @@ public class Shooter extends Entity
 		{
 			//add set bullet type for current bullet, after changing Bullet() params
 			
-			if (shooter == Controller.player) {
-				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), angle, "red");
-				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			if (shooter == GameObjectManager.player) {
+				Bullet newBullet = new Bullet(shooter, GameObjectManager.bullets.size(), angle, "red");
+				GameObjectManager.bullets.add(GameObjectManager.bullets.size(), newBullet);
 			}
-			else if (shooter == Controller.player2) {
-				Bullet newBullet = new Bullet(shooter, Controller.bullets.size(), angle, "blue");
-				Controller.bullets.add(Controller.bullets.size(), newBullet);
+			else if (shooter == GameObjectManager.player2) {
+				Bullet newBullet = new Bullet(shooter, GameObjectManager.bullets.size(), angle, "blue");
+				GameObjectManager.bullets.add(GameObjectManager.bullets.size(), newBullet);
 			}
 		}
 		catch(Exception e)
@@ -197,7 +201,7 @@ public class Shooter extends Entity
 	public void loseLife()
 	{
 		States.playerLives[0]--;
-		Controller.loseLevel();
+		GameObjectManager.loseLevel();
 	}
 
 	/**
@@ -217,6 +221,22 @@ public class Shooter extends Entity
 		StdDraw.text(States.WINDOW_RESOLUTION - HPBarWidth/(double)1.5, States.WINDOW_RESOLUTION - HPBarHeight/(double)1.5, ((int)(HP*100/(double)States.playerHP)) + "% x" + (States.playerLives[0]));
 
 		super.render("shooter.png");
+	}
+	
+	public void render1()
+	{
+		double HPBarWidth = States.WINDOW_RESOLUTION2/(double)4;
+		double HPBarHeight = States.WINDOW_RESOLUTION2/(double)20;
+
+		StdDraw.setPenColor(Color.RED);
+		StdDraw.filledRectangle(States.WINDOW_RESOLUTION2 - HPBarWidth/(double)1.5, States.WINDOW_RESOLUTION2 - HPBarHeight/(double)1.5, HPBarWidth/(double)2, HPBarHeight/(double)2);
+		StdDraw.setPenColor(Color.GREEN);
+		StdDraw.filledRectangle(States.WINDOW_RESOLUTION2 - HPBarWidth/(double)1.5, States.WINDOW_RESOLUTION2 - HPBarHeight/(double)1.5, HPBarWidth/(double)2 - (1 - HP/(double)States.player2HP)*(HPBarWidth/(double)2), HPBarHeight/(double)2);
+
+		StdDraw.setPenColor(Color.BLACK);
+		StdDraw.text(States.WINDOW_RESOLUTION2 - HPBarWidth/(double)1.5, States.WINDOW_RESOLUTION2 - HPBarHeight/(double)1.5, ((int)(HP*100/(double)States.player2HP)) + "% x" + (States.playerLives2[0]));
+
+		super.render("shooter2.png");			
 	}
 
 	/**

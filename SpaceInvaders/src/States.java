@@ -22,6 +22,8 @@ public class States
   public static boolean gameOver = false;
   
   public static final double WINDOW_RESOLUTION = 600;
+  //added for player 2 HP
+  public static final double WINDOW_RESOLUTION2 = 570;
   public static final double WINDOW_CENTRE = WINDOW_RESOLUTION/2;
   public static final double SHOOTER_SIZE = WINDOW_RESOLUTION * 0.1;
   public static final double SHOOTER_START_X = WINDOW_CENTRE;
@@ -41,14 +43,20 @@ public class States
   
   public static int fireRate = 500;
   public static int playerDamage = 10;
+  //added for player 2 HP
+  public static int player2Damage=10;
   public static int enemyDamage = 4;
   public static int enemyShootDelay = 1500;
   public static int enemyHealth = 10;
   public static int[] playerLives = {3, 3};
+  //added for player 2 HP
+  public static int[] playerLives2 = {3, 3};
   public static int powerUpDuration = 5000;
   public static int powerUpSpawnDelay = 3000;
   public static int numberBulletsPlayerShoots = 1;
   public static int playerHP = 10;
+  //added for player 2 HP
+  public static int player2HP=13;
   public static int bulletPhaseChance = 1;
   public static int bunkerHP = 50;
   

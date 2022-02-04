@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author elan
  *
  */
-public class Controller
+public class GameObjectManager
 {
 	/**
 	 * these are all public and static as they are changed by many other classes and functions
@@ -329,7 +329,8 @@ public class Controller
 				Score.render();
 				Level.render();
 				player.render();
-				player2.render("shooter2.png");
+				//CH changed for player 2 HP
+				player2.render1();
 			}
 			else if(States.isUpgradeRunning)
 			{
@@ -443,7 +444,7 @@ public class Controller
 		{
 			initializeGame();
 			player = new Shooter();
-			player2 = new Shooter();
+			player2 = new Shooter(States.SHOOTER_START_Q, States.SHOOTER_START_R);
 ;	}
 	}
 
@@ -481,6 +482,11 @@ public class Controller
 		States.enemyBulletSpeed = States.enemySpeed*1.5;
 		States.enemySize = States.SHOOTER_SIZE * 0.9;
 		States.bunkerWidth = States.WINDOW_CENTRE/(double)3;
+		
+		//added for player 2 HP
+		States.playerLives = new int[]{3, 3};
+		States.player2Damage = 10;
+		States.player2HP = 13;
 	}
 
 	/**
